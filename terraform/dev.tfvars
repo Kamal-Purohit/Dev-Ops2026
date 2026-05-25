@@ -1,1 +1,0 @@
-bucket_name = "kamal-testdevopss3bucket"
