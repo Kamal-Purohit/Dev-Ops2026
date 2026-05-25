@@ -7,7 +7,7 @@ module "VPC" {
 # Security group module
 module "security_group" {
   source = "./security_group"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.VPC.vpc_id
 }
 
 # IAM role module
@@ -18,7 +18,7 @@ module "IAM_Role" {
 # EC2 module (creates 2 Ubuntu instances)
 module "EC2" {
   source           = "./EC2"
-  subnet_ids       = module.vpc.subnet_ids
-  sg_id            = module.sg.sg_id
-  instance_profile = module.iam.instance_profile
+  subnet_ids       = module.VPC.subnet_ids
+  sg_id            = module.security_group.sg_id
+  instance_profile = module.IAM_Role.instance_profile
 }
